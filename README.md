@@ -1,8 +1,8 @@
 #  TUGAS PENGEMBANGAN APK WEB
 
 
-##-- OUR TEAM --
-### M. GANI
-### IVAN 
-### IRVAN
+###-- OUR TEAM --
+1. M. GANI
+2. IVAN 
+3. IRVAN
 
