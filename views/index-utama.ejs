@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GO Express | Layanan Pengiriman</title>
+    <link rel="stylesheet" href="/css/style-index.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="wrapper">
+        <div class="logo"><a href="">Go_Express</a></div>
+        <div class="menu">
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#courses">Tentang</a></li>
+            <li><a href="#tutors">Cek Resi</a></li>
+            <li><a href="#contact">kontak</a></li>
+            <li><a href="login.ejs" class="tbl-biru">Masuk</a></li>
+            <li><a href="" class="tbl-biru">Indonesia</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="wrapper">
+      <!-- untuk home -->
+      <section id="home">
+        <img id="gambarhome" src="/kenapa/home.jpg" />
+        <div class="kolom">
+          <p class="deskripsi">Kirim Paket #dirumahaja</p>
+          <h2>Tetap Sehat, Tetap Semangat</h2>
+          <p></p>
+          <p><a href="" class="tbl-pink">Go Express</a></p>
+        </div>
+      </section>
+
+      <!-- untuk courses -->
+      <section id="courses">
+        <div class="kolom">
+          <h2>Tentang Kami</h2>
+          <br /><br />
+          <div>
+            <img id="tentang" src="/kenapa/tentang.png" />
+          </div>
+          <br />
+          <br />
+          <br />
+          <br />
+          <p class="deskripsi">Kenapa Sih Harus GoExpress ?</p>
+
+          <h2>3 Poin Penting</h2>
+
+          <p><a href="" class="tbl-biru">Tiga Poin Penting</a></p>
+          <br />
+          <div>
+            <img id="grup1" src="/kenapa/Group1.png" />
+            <img id="grup2" src="/kenapa/Group2.png" />
+            <img id="grup3" src="/kenapa/Group3.png" /> <br />
+            <br />
+            <br />
+            <br />
+          </div>
+        </div>
+      </section>
+
+      <!-- untuk cek resi -->
+      <section id="cekres">
+        <div class="container mt-5" id="main">
+          <div class="shadow p-3 bg-white rounded">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="Masukkan No.Resi" id="search-input" autofocus />
+                </div>
+              </div>
+              <div class="col-md-2">
+                <select class="form-control kurir">
+                  <option value="GoE">Go Express</option>
+                </select>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-6">
+                <button class="btn btn-primary" type="button" id="search-button">Cari</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <div class="col-md-10 info"></div>
+          </div>
+        </div>
+      </section>
+
+      <!--//breadcrumb-->
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<div class="login-panel panel panel-info">
+					<div class="panel-heading">
+						<h3 class="heading"><i class="fa fa-phone"></i> Hubungi Kami</h3>
+					</div>
+						<div class="panel-body">
+							<section class="col-sm-8 maincontent">
+									<form id="basicBootstrapForm" class="form-horizontal" method="post">
+										<div class="form-group">
+										<label class="col-xs-3 control control-label">* Nama</label>
+											<div class="col-xs-6">
+												<div class="input-group margin-bottom-sm">
+												<span class="input-group-addon"><i class="fa fa-user"></i></span>
+												<input type="text" class="form-control" name="username" required placeholder=""/>
+											</div>											</div>
+										</div>											
+												<div class="form-group">
+														<label class="col-xs-3 control-label">* Alamat Email
+														</label>
+													<div class="col-xs-6">
+														<div class="input-group margin-bottom-sm">
+															<span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+															<input class="form-control" type="text" name="email" placeholder="" pattern="^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})" size="40">
+														</div>
+													</div>
+												</div>
+                                                <div class="form-group">
+                                                    <label class="col-xs-3 control-label">* No. Telpon
+                                                    </label>
+                                                <div class="col-xs-6">
+                                                    <div class="input-group margin-bottom-sm">
+                                                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                                        <input class="form-control" type="text" name="notelpon" placeholder="" pattern="^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})" size="40">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-xs-3 control-label">* Provinsi Kota Area
+                                                </label>
+                                            <div class="col-xs-6">
+                                                <div class="input-group margin-bottom-sm">
+                                                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                                    <input class="form-control" type="text" name="kota" placeholder="" pattern="^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})" size="40">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-xs-3 control-label">  Detail Alamat
+                                            </label>
+                                        <div class="col-xs-6">
+                                            <div class="input-group margin-bottom-sm">
+                                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                                <input class="form-control" type="text" name="alamat" placeholder="" pattern="^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})" size="40">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-xs-3 control-label">* No. Resi
+                                        </label>
+                                    <div class="col-xs-6">
+                                        <div class="input-group margin-bottom-sm">
+                                            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                            <input class="form-control" type="text" name="resi" placeholder="" pattern="^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})" size="40">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+												<div class="form-group">
+														<label for="name" class="col-xs-3 control-label">* Pesan
+														</label>
+													<div class="col-xs-6">
+														<textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required" placeholder=""></textarea>
+														</textarea>
+													</div>
+												</div>
+												<div class="form-group">
+														<label class="col-xs-3 control-label" id="captchaOperation">
+														</label>
+													<div class="col-xs-5">
+														<input type="text" class="form-control" name="captcha" required value=""/>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<div class="col-xs-7 col-xs-offset-3">
+														<div class="checkbox">
+													<label>
+														<input type="checkbox" name="agree" value="agree" required/>Setuju dengan syarat dan ketentuan
+													</label>
+														</div>
+													</div>
+												</div>
+
+												<div class="form-group" form action="mailto:vicozwar@$gmail.com" enctype="text/plain" method="post">
+													<div class="form-group">
+														<div class="col-xs-10 col-xs-offset-3">
+															<button type="submit" class="btn btn-success" name="signup" placeholder="Sign up">Submit</button>
+														</div>
+													</div>
+												</div>
+							</section>
+							<section class="col-sm-4 maincontent">
+							<form>
+								<address>
+									<i class="fa fa-map-marker"></i>
+									<strong>Go Express</strong>
+									<br/>
+									Jl. Cigagak, cipadung
+                                    Ci Biru, kota Bandung
+									Kode Pos: 22381<br/>
+									<i class="fa fa-phone-square"></i> Telp : +62 632 331234<br/>
+									<i class="fa fa-fax"></i> Fax  : +62 632 331116
+								</address>
+							</form>
+							</section>
+									</form>
+						</div><!--panel-body-->
+				</div><!--login-panel panel panel-info-->
+			</div><!--col-sm-11 col-lg-12-->
+		</div><!--/row-->
+      
+
+      <!-- untuk partners -->
+      <section id="partners">
+        <div class="tengah">
+          <div class="kolom">
+            <p class="deskripsi">Our Top Partners</p>
+            <h2>Partners</h2>
+           
+          </div>
+
+          <div class="partner-list">
+            <div class="kartu-partner">
+              <img src="/kenapa/bl.jpg" />
+            </div>
+            <div class="kartu-partner">
+              <img src="/kenapa/bli.jpg" />
+            </div>
+            <div class="kartu-partner">
+              <img src="/kenapa/lazada.jpg" />
+            </div>
+            <div class="kartu-partner">
+              <img src="/kenapa/tokped.png" />
+            </div>
+            <div class="kartu-partner">
+              <img src="/kenapa/shopee.jpg" />
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    
+
+    <div id="contact">
+      <div class="wrapper">
+        <div class="footer">
+          <div class="footer-section">
+            <h3>Kontak</h3>
+            <p>085793415939</p>
+          </div>
+          <div class="footer-section">
+            <h3>Email</h3>
+            <p>goexpress@gmail.com</p>
+          </div>
+          <div class="footer-section">
+            <h3>Alamat</h3>
+            <p>Jalan Cigagak<br />Kecamatan Cibiru<br />Kota Bandung<br /></p>
+            <p>Kode Pos: 57365</p>
+          </div>
+          <div class="footer-section">
+            <h3>Social</h3>
+            <p><b>YouTube : </b>Go Express</p>
+            <br />
+            <p><b>Instagram :</b>Go_Express</p>
+            <br />
+            <p><b>Facebook :</b>Go Express</p>
+            <br />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="copyright">
+      <div class="wrapper">&copy; 2022. <b>Go Express.</b> All Rights Reserved.</div>
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/script.js"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>

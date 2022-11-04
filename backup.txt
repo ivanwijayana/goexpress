@@ -1,0 +1,172 @@
+const express = require('express');
+const app = express();
+
+app.listen(3000, ()=>{
+    console.log('Server running on port 3000');
+});
+
+app.use(express.static('public'));
+
+app.get('/',( req, res)=> {
+    res.render('admin.ejs')
+});
+
+app.get('/admin.ejs',( req, res)=> {
+    res.render('admin.ejs')
+});
+
+app.get('/admin-kirim-transit.ejs',( req, res)=> {
+    res.render('admin-kirim-transit.ejs')
+});
+
+app.get('/admin-kirim-penerima.ejs',( req, res)=> {
+    res.render('admin-kirim-penerima.ejs')
+});
+
+app.get('/admin-terima-user.ejs',( req, res)=> {
+    res.render('admin-terima-user.ejs')
+});
+
+app.get('/admin-terima-ekspedisi.ejs',( req, res)=> {
+    res.render('admin-terima-ekspedisi.ejs')
+});
+
+==========================================================================================================================
+
+PART 2
+
+const express = require('express');
+const app = express();
+var mysql = require('mysql');
+
+var pool = mysql.createPool({
+    connectionLimit : 5,
+    host: "localhost",
+    user: "Test1",
+    password: "kpL27Iac99",
+    database: "app_ekspedisi"
+  });
+
+    //connection.query('SELECT * FROM rec_user', function (error, results, fields)
+    var post = {id_barang: 00001, nama_barang: 'percobaan', nama_cabang_asal:'Bandung', nama_pengirim:'Gani',
+    nama_penerima:'ivan', kota:'Jakarta', alamat:'Jalan Alun-Alun No. 196', waktu_penerimaan:'2021-10-28 18:30:30',
+    resi_barang:907483}
+    var query = pool.query('INSERT INTO rec_user SET ?', post, function (error, results, fields) {
+    if (error) throw error;
+    // Neat!
+    });
+    console.log(query.sql); // INSERT INTO posts SET `id` = 1, `title` = 'Hello MySQL'                
+
+    /*
+  pool.getConnection(function(err, connection) {
+    if (err) throw err; // not connected!
+    // Use the connection
+    connection.query('SELECT * FROM rec_user', function (error, results, fields) {
+    // When done with the connection, release it.
+    connection.release();
+ 
+    // Handle error after the release.
+    if (error) throw error;
+ 
+    // Don't use the connection here, it has been returned to the pool.
+  });
+});
+*/
+  
+/*
+var connection = mysql.createConnection({
+  host: "localhost",
+  user: "Test1",
+  password: "kpL27Iac99",
+  database: "app_ekspedisi"
+});
+
+connection.connect(function(err) {
+  if (err) {
+    console.error('error connecting: ' + err.stack);
+    return;
+  }
+  console.log('connected as id ' + connection.threadId);
+});
+*/
+app.listen(3000, ()=>{
+    console.log('Server running on port 3000');
+});
+
+app.use(express.static('public'));
+
+app.get('/index.ejs',( req, res)=> {
+    res.render('admin.ejs')
+});
+
+app.get('/admin.ejs',( req, res)=> {
+    res.render('admin.ejs')
+});
+
+app.get('/admin-kirim-transit.ejs',( req, res)=> {
+    res.render('admin-kirim-transit.ejs')
+});
+
+app.get('/admin-kirim-penerima.ejs',( req, res)=> {
+    res.render('admin-kirim-penerima.ejs')
+});
+
+app.get('/admin-terima-user.ejs',( req, res)=> {
+    res.render('admin-terima-user.ejs')
+});
+
+/*
+app.post('/terima-user', (req, res)=>{
+    const itemName = req.body.nama_buku;
+    pool.query('insert into app.buku(nama_buku) values($1)',
+    [itemName], (error, results)=>{
+        if(error){
+            throw error;
+        }
+        res.redirect('/');
+    });
+});*/
+
+app.get('/admin-terima-ekspedisi.ejs',( req, res)=> {
+    res.render('admin-terima-ekspedisi.ejs')
+});
+
+
+========================================================================================================================
+
+Part 3
+
+    pool.query(`insert into rec_user(id_barang, nama_barang, nama_cabang_asal, nama_pengirim, nama_penerima, kota, alamat, waktu_penerimaan, resi_barang)
+        values ('${itemName1}', '${itemName2}', '${itemName9}', '${itemName3}', '${itemName4}', '${itemName5}', '${itemName6}', 
+        '${itemName7}', '${itemName8}')`, (error, results)=>{
+        if(error){
+            throw error;
+        }
+        res.redirect('/admin-terima-user.ejs');
+    });
+
+    pool.query('insert into rec_user(id_barang, nama_barang, nama_cabang_asal, nama_pengirim, nama_penerima, kota, alamat, waktu_penerimaan, resi_barang)  values($9)', 
+    [itemName1, itemName2, itemName9, itemName3, itemName4, itemName5, itemName6, itemName7, itemName8], 
+    (error, results)=>{
+        if(error){
+            throw error;
+        }
+        res.redirect('/admin-terima-user.ejs');
+    });
+
+    
+/*
+//connection.query('SELECT * FROM rec_user', function (error, results, fields)
+var post = {id_barang: 00002, nama_barang: 'percobaan', nama_cabang_asal:'Bandung', nama_pengirim:'Gani',
+nama_penerima:'ivan', kota:'Jakarta', alamat:'Jalan Alun-Alun No. 196', waktu_penerimaan:'2021-10-28 18:30:30',
+resi_barang:807483}
+var query = pool.query('INSERT INTO rec_user SET ?', post, function (error, results, fields) {
+if (error) throw error;
+// Neat!
+});
+console.log(query.sql); // INSERT INTO posts SET `id` = 1, `title` = 'Hello MySQL'      
+*/
+
+===================================================================================================================
+
+Part 4
