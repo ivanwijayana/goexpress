@@ -137,6 +137,29 @@ app.get('/delete-adm', function (req, res, next){
     });
 });
 
+// UPDATE DATA ADMIN
+app.get('/edit-adm', function (req, res, next){
+    pool.query('SELECT * table_admin SET ? WHERE id = ?', req.query.admin_id,
+     (error, result)=>{
+        res.render('sa-form-admin.ejs'), {items:result}
+    });
+});
+
+app.get('/edit-adm', function (req, res, next){
+    var param = [
+        req.body,
+        req.query.admin_id,
+    ]    
+
+
+    pool.query('UPDATE table_admin SET ? WHERE id = ?', param, function(error, rs){
+        res.render('/sa-m-akun-admin.ejs'); 
+    });
+});
+
+
+
+
 // ADMIN CABANG
 app.get('/index.ejs',( req, res)=> {
     res.render('admin.ejs')

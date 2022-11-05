@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
     <link rel="stylesheet" href="./public/css/cs-skin-elastic.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
     <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
@@ -159,9 +159,9 @@
                                                     <td class="serial"><span class="id-column"><%= item.admin_id%></span></td>
                                                     <td> <span class="name-column"><%= item.admin_email%></span></td>
                                                     <td> <span class="name-column"><%= item.password_password%></span> </td>
-                                                    <td>
-                                                        <span class="badge badge-danger">Edit</span>    
-                                                        <a href="/delete-adm?id= <%= item.admin_id %>" onClick="return confirm('Apakah Anda Yakin Ingin Menghapusnya ?')"><span class="badge badge-complete">Delete</span></a>
+                                                    <td> 
+                                                        <a href="/edit-adm?id= <%= item.admin_id %>" onClick="return confirm('Edit File Ini ?')"><span class="badge badge-complete">Edit</span>
+                                                        <a href="/delete-adm?id= <%= item.admin_id %>" onClick="return confirm('Apakah Anda Yakin Ingin Menghapusnya ?')"><span class="badge badge-danger">Delete</span></a>
                                                     </td>
                                                 </tr>
                                                 <%})%>
