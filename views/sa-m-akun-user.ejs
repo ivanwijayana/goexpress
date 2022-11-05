@@ -161,7 +161,7 @@
                                                     <td> <span class="name-column"><%= item.password%></span> </td>
                                                     <td>
                                                         <span class="badge badge-complete">Edit</span>
-                                                        <span class="badge badge-danger">Delete</span>    
+                                                        <a href="/delete-user?id= <%= item.user_id %>" onClick="return confirm('Apakah Anda Yakin Ingin Menghapusnya ?')"><span class="badge badge-danger">Delete</span></a>
                                                     </td>
                                                 </tr>
                                                 <%})%>

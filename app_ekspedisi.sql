@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 05, 2022 at 08:49 AM
--- Server version: 10.1.32-MariaDB
--- PHP Version: 5.6.36
+-- Host: localhost
+-- Generation Time: Nov 05, 2022 at 10:59 AM
+-- Server version: 8.0.25
+-- PHP Version: 8.0.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -29,14 +28,14 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `rec_exp` (
-  `id_rec_exp` int(11) NOT NULL,
-  `id_barang` int(11) NOT NULL,
-  `nama_cabang_sebelum` varchar(25) COLLATE utf8mb4_bin NOT NULL,
-  `id_admin` int(11) NOT NULL,
-  `nama_admin` varchar(35) COLLATE utf8mb4_bin NOT NULL,
+  `id_rec_exp` int NOT NULL,
+  `id_barang` int NOT NULL,
+  `nama_cabang_sebelum` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `id_admin` int NOT NULL,
+  `nama_admin` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `waktu_penerimaan` datetime NOT NULL,
-  `resi` int(11) NOT NULL,
-  `id_ekspedisi` int(11) NOT NULL
+  `resi` int NOT NULL,
+  `id_ekspedisi` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
@@ -53,16 +52,16 @@ INSERT INTO `rec_exp` (`id_rec_exp`, `id_barang`, `nama_cabang_sebelum`, `id_adm
 --
 
 CREATE TABLE `rec_user` (
-  `id_rec_user` int(11) NOT NULL,
-  `id_barang` int(11) NOT NULL,
-  `nama_barang` varchar(25) COLLATE utf8mb4_bin NOT NULL,
-  `nama_cabang_asal` varchar(20) COLLATE utf8mb4_bin NOT NULL,
-  `nama_pengirim` varchar(50) COLLATE utf8mb4_bin NOT NULL,
-  `nama_penerima` varchar(50) COLLATE utf8mb4_bin NOT NULL,
-  `kota` varchar(25) COLLATE utf8mb4_bin NOT NULL,
-  `alamat` varchar(50) COLLATE utf8mb4_bin NOT NULL,
+  `id_rec_user` int NOT NULL,
+  `id_barang` int NOT NULL,
+  `nama_barang` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `nama_cabang_asal` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `nama_pengirim` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `nama_penerima` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `kota` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `alamat` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `waktu_penerimaan` datetime NOT NULL,
-  `resi_barang` int(11) NOT NULL
+  `resi_barang` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
@@ -83,24 +82,25 @@ INSERT INTO `rec_user` (`id_rec_user`, `id_barang`, `nama_barang`, `nama_cabang_
 --
 
 CREATE TABLE `sen_rec` (
-  `id_sen_rec` int(11) NOT NULL,
-  `id_barang` int(11) NOT NULL,
-  `id_admin` int(11) NOT NULL,
-  `nama_admin` varchar(35) COLLATE utf8mb4_bin NOT NULL,
-  `kota` varchar(30) COLLATE utf8mb4_bin NOT NULL,
-  `alamat` varchar(50) COLLATE utf8mb4_bin NOT NULL,
+  `id_sen_rec` int NOT NULL,
+  `id_barang` int NOT NULL,
+  `id_admin` int NOT NULL,
+  `nama_admin` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `nama_penerima` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `alamat` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `waktu_pengiriman` datetime NOT NULL,
-  `resi` int(11) NOT NULL,
-  `id_pengiriman` int(11) NOT NULL
+  `resi` int NOT NULL,
+  `id_pengiriman` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
 -- Dumping data for table `sen_rec`
 --
 
-INSERT INTO `sen_rec` (`id_sen_rec`, `id_barang`, `id_admin`, `nama_admin`, `kota`, `alamat`, `waktu_pengiriman`, `resi`, `id_pengiriman`) VALUES
-(1, 433333333, 1233213, 'Gani', 'Bandung', 'Jl. Paranya No. 823', '2002-12-30 20:09:00', 2353262, 333333321),
-(2, 2147483647, 888888888, 'enje', 'cibening', 'jl. anu anu anu', '2010-10-09 12:08:32', 444444, 66666666);
+INSERT INTO `sen_rec` (`id_sen_rec`, `id_barang`, `id_admin`, `nama_admin`, `nama_penerima`, `alamat`, `waktu_pengiriman`, `resi`, `id_pengiriman`) VALUES
+(1, 433333333, 1233213, 'Gani', 'Ilham', 'Jl. Paranya No. 823', '2002-12-30 20:09:00', 2353262, 333333321),
+(2, 2147483647, 888888888, 'enje', 'indah', 'jl. anu anu anu', '2010-10-09 12:08:32', 444444, 66666666),
+(3, 13, 213, 'df', 'as', 'Jl. Cibiru No. 111', '2002-12-30 20:09:00', 4352521, 133);
 
 -- --------------------------------------------------------
 
@@ -109,17 +109,17 @@ INSERT INTO `sen_rec` (`id_sen_rec`, `id_barang`, `id_admin`, `nama_admin`, `kot
 --
 
 CREATE TABLE `sen_tran` (
-  `id_sen_tran` int(11) NOT NULL,
-  `id_barang` int(11) NOT NULL,
-  `id_cabang_asal` int(11) NOT NULL,
-  `nama_cabang_asal` varchar(35) COLLATE utf8mb4_bin NOT NULL,
-  `id_admin` int(11) NOT NULL,
-  `nama_admin` varchar(35) COLLATE utf8mb4_bin NOT NULL,
-  `id_cabang_penerima` int(11) NOT NULL,
-  `nama_cabang_penerima` varchar(35) COLLATE utf8mb4_bin NOT NULL,
+  `id_sen_tran` int NOT NULL,
+  `id_barang` int NOT NULL,
+  `id_cabang_asal` int NOT NULL,
+  `nama_cabang_asal` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `id_admin` int NOT NULL,
+  `nama_admin` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `id_cabang_penerima` int NOT NULL,
+  `nama_cabang_penerima` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `waktu_penerimaan` datetime NOT NULL,
-  `resi_barang` int(11) NOT NULL,
-  `id_ekspedisi` int(11) NOT NULL
+  `resi_barang` int NOT NULL,
+  `id_ekspedisi` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
@@ -139,7 +139,7 @@ INSERT INTO `sen_tran` (`id_sen_tran`, `id_barang`, `id_cabang_asal`, `nama_caba
 --
 
 CREATE TABLE `superadmin_tabel` (
-  `sa_id` int(11) NOT NULL,
+  `sa_id` int NOT NULL,
   `username` varchar(11) NOT NULL,
   `password` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -158,10 +158,22 @@ INSERT INTO `superadmin_tabel` (`sa_id`, `username`, `password`) VALUES
 --
 
 CREATE TABLE `table_admin` (
-  `admin_id` int(11) NOT NULL,
+  `admin_id` int NOT NULL,
   `admin_email` varchar(100) NOT NULL,
   `password_password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `table_admin`
+--
+
+INSERT INTO `table_admin` (`admin_id`, `admin_email`, `password_password`) VALUES
+(17, '1231', '123'),
+(18, '213', '111'),
+(19, '1231', '111'),
+(20, '1231', '24124'),
+(21, '1231', '111'),
+(22, '1231', '111');
 
 -- --------------------------------------------------------
 
@@ -170,10 +182,10 @@ CREATE TABLE `table_admin` (
 --
 
 CREATE TABLE `table_cabang` (
-  `id_table_cabang` int(5) NOT NULL,
-  `id_cabang` int(13) NOT NULL,
-  `nama_cabang` varchar(35) COLLATE utf8mb4_bin NOT NULL,
-  `lokasi` varchar(50) COLLATE utf8mb4_bin NOT NULL
+  `id_table_cabang` int NOT NULL,
+  `id_cabang` int NOT NULL,
+  `nama_cabang` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `lokasi` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
@@ -201,10 +213,10 @@ INSERT INTO `table_cabang` (`id_table_cabang`, `id_cabang`, `nama_cabang`, `loka
 --
 
 CREATE TABLE `table_karyawan` (
-  `id_table_karyawan` int(5) NOT NULL,
-  `id_karyawan` int(13) NOT NULL,
-  `nama_karyawan` varchar(35) COLLATE utf8mb4_bin NOT NULL,
-  `cabang_karyawan` varchar(50) COLLATE utf8mb4_bin NOT NULL
+  `id_table_karyawan` int NOT NULL,
+  `id_karyawan` int NOT NULL,
+  `nama_karyawan` varchar(35) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `cabang_karyawan` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
@@ -229,7 +241,7 @@ INSERT INTO `table_karyawan` (`id_table_karyawan`, `id_karyawan`, `nama_karyawan
 --
 
 CREATE TABLE `table_user` (
-  `user_id` int(11) NOT NULL,
+  `user_id` int NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -321,55 +333,55 @@ ALTER TABLE `table_user`
 -- AUTO_INCREMENT for table `rec_exp`
 --
 ALTER TABLE `rec_exp`
-  MODIFY `id_rec_exp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_rec_exp` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `rec_user`
 --
 ALTER TABLE `rec_user`
-  MODIFY `id_rec_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_rec_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `sen_rec`
 --
 ALTER TABLE `sen_rec`
-  MODIFY `id_sen_rec` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_sen_rec` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `sen_tran`
 --
 ALTER TABLE `sen_tran`
-  MODIFY `id_sen_tran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_sen_tran` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `superadmin_tabel`
 --
 ALTER TABLE `superadmin_tabel`
-  MODIFY `sa_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `sa_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `table_admin`
 --
 ALTER TABLE `table_admin`
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `admin_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `table_cabang`
 --
 ALTER TABLE `table_cabang`
-  MODIFY `id_table_cabang` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_table_cabang` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `table_karyawan`
 --
 ALTER TABLE `table_karyawan`
-  MODIFY `id_table_karyawan` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_table_karyawan` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `table_user`
 --
 ALTER TABLE `table_user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
