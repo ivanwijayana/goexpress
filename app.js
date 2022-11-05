@@ -12,8 +12,8 @@ var upload = multer();
 var pool = mysql.createPool({
     connectionLimit : 5,
     host: "localhost",
-    user: "root",
-    password: "",
+    user: "Test1",
+    password: "kpL27Iac99",
     database: "app_ekspedisi"
   });   
 
@@ -84,6 +84,14 @@ app.get('/sa-tambah-cabang.ejs',( req, res)=> {
     })
 });
 
+//DELETE DATA CABANG
+app.get('/delete-cabang', function (req, res, next){
+    pool.query(`DELETE FROM table_cabang where id_table_cabang = ?`, req.query.id, (error, result)=>{
+        if (error) throw error 
+        res.redirect('sa-tambah-cabang.ejs'), {items:result}
+    });
+});
+
 
 // TAMPILKAN DATA KARYAWAN
 app.get('/sa-form-karyawan.ejs',( req, res)=> {
@@ -96,6 +104,14 @@ app.get('/sa-tambah-karyawan.ejs',( req, res)=> {
         if (error) throw error        
     res.render('sa-tambah-karyawan.ejs', {items:result});
     })
+});
+
+//DELETE DATA KARYAWAN
+app.get('/delete-karyawan', function (req, res, next){
+    pool.query(`DELETE FROM table_karyawan where id_table_karyawan = ?`, req.query.id, (error, result)=>{
+        if (error) throw error 
+        res.redirect('sa-tambah-karyawan.ejs'), {items:result}
+    });
 });
 
 // TAMPILKAN DATA AKUN USER DAN ADMIN
@@ -115,6 +131,14 @@ app.get('/sa-form-user.ejs',( req, res)=> {
     res.render('sa-form-user.ejs')
 });
 
+//DELETE DATA USER
+app.get('/delete-user', function (req, res, next){
+    pool.query(`DELETE FROM table_user where user_id = ?`, req.query.id, (error, result)=>{
+        if (error) throw error 
+        res.redirect('sa-m-akun-user.ejs'), {items:result}
+    });
+});
+
 
 // TAMPILKAN DATA ADMIN
 app.get('/sa-m-akun-admin.ejs',( req, res)=> {
@@ -125,25 +149,66 @@ app.get('/sa-m-akun-admin.ejs',( req, res)=> {
 });
 
 app.get('/sa-form-admin.ejs',( req, res)=> {
-    res.render('sa-form-admin.ejs')
+    res.render('sa-form-admin.ejs', {items: {} })
 });
 
 // DELETE DATA ADMIN
 app.get('/delete-adm', function (req, res, next){
-    pool.query('DELETE FROM table_admin', req.query.admin_id, (error, result)=>{
+    pool.query(`DELETE FROM table_admin where admin_id = ?`, req.query.id, (error, result)=>{
         if (error) throw error
-    
-        res.render('sa-m-akun-admin.ejs'), {items:result}
+        
+        res.redirect('sa-m-akun-admin.ejs'), {items:result}
     });
 });
 
-// ADMIN CABANG
-app.get('/index.ejs',( req, res)=> {
-    res.render('admin.ejs')
+/*
+// EDIT DATA ADMIN
+app.get('/edit-adm', function (req, res, next){
+    pool.query(`select * FROM table_admin where admin_id = ?`, req.query.id, (error, result)=>{
+        if (error) throw error
+        res.render('sa-form-admin.ejs'), {items:result[0]}
+    });
 });
 
-app.get('/admin.ejs',( req, res)=> {
-    res.render('admin.ejs')
+app.post('/edit-adm', function (req, res, next){
+    var param = {
+        admin_email:req.body.admin_input,
+        password_input:req.body.password_password}
+    var id = {
+        admin_id:req.query.id}
+    pool.query(`update table_admin set ? where admin_id = ?`, [param, id], (error, result)=>{
+        if (error) throw error
+        res.redirect('sa-m-akun-admin.ejs'), {items:result[0]}
+    });
+});*/
+
+// ADMIN CABANG
+app.get('/admin-db-sentran.ejs',( req, res)=> {
+    pool.query('select * from sen_tran', (error, result)=>{
+        if (error) throw error        
+        res.render('admin-db-sentran.ejs', {items:result});
+    })
+});
+
+app.get('/admin-db-senrec.ejs',( req, res)=> {
+    pool.query('select * from sen_rec', (error, result)=>{
+        if (error) throw error        
+        res.render('admin-db-senrec.ejs', {items:result});
+    })
+});
+
+app.get('/admin-db-recexp.ejs',( req, res)=> {
+    pool.query('select * from rec_exp', (error, result)=>{
+        if (error) throw error        
+        res.render('admin-db-recexp.ejs', {items:result});
+    })
+});
+
+app.get('/admin-db-recuser.ejs',( req, res)=> {
+    pool.query('select * from rec_user', (error, result)=>{
+        if (error) throw error        
+        res.render('admin-db-recuser.ejs', {items:result});
+    })
 });
 
 app.get('/admin-kirim-transit.ejs',( req, res)=> {
@@ -156,6 +221,10 @@ app.get('/admin-kirim-penerima.ejs',( req, res)=> {
 
 app.get('/admin-terima-user.ejs',( req, res)=> {
     res.render('admin-terima-user.ejs')
+});
+
+app.get('/admin-terima-ekspedisi.ejs',( req, res)=> {
+    res.render('admin-terima-ekspedisi.ejs')
 });
 
 
@@ -195,7 +264,7 @@ app.post('/kirim-penerima', (req, res)=>{
     const itemName1 = req.body.id_barang_input;
     const itemName2 = req.body.id_admin_input;
     const itemName3 = req.body.nama_admin_input;
-    const itemName4 = req.body.kota_input;
+    const itemName4 = req.body.penerima_input;
     const itemName5 = req.body.alamat_input;
     const itemName6 = req.body.waktu_pengiriman_input;
     const itemName7 = req.body.resi_input;
@@ -203,7 +272,7 @@ app.post('/kirim-penerima', (req, res)=>{
     var post = {id_barang:itemName1,
                 id_admin:itemName2,
                 nama_admin:itemName3,
-                kota:itemName4,
+                nama_penerima:itemName4,
                 alamat:itemName5,
                 waktu_pengiriman:itemName6,
                 resi:itemName7,
@@ -366,7 +435,7 @@ app.post('/auth', function(request, response) {
 				request.session.loggedin = true;
 				request.session.username = username;
 				// Redirect to home page
-				response.redirect('/admin.ejs');
+				response.redirect('/admin-db-senrec.ejs');
 			} else {
 				response.send('Incorrect Username and/or Password!');
 			}			
@@ -422,7 +491,3 @@ app.get('/admin', function(request, response) {
 });
 
 
-
-app.get('/admin-terima-ekspedisi.ejs',( req, res)=> {
-    res.render('admin-terima-ekspedisi.ejs')
-});
