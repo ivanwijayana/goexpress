@@ -30,8 +30,8 @@ app.use(upload.array());
 app.use(express.static('public'));
 
 
-app.listen(3280, ()=>{
-    console.log('Server running on port 3280');
+app.listen(3000, ()=>{
+    console.log('Server running on port 3000');
 });
 
 app.use(express.urlencoded({extended:false}));
@@ -70,18 +70,11 @@ app.get('/sa-dashboard.ejs',( req, res)=> {
     res.render('sa-dashboard.ejs')
 });
 
+
+// TAMPILKAN DATA CABANG 
 app.get('/sa-form-cabang.ejs',( req, res)=> {
    
     res.render('sa-form-cabang.ejs' )
-});
-
-
-app.get('/sa-form-karyawan.ejs',( req, res)=> {
-    res.render('sa-form-karyawan.ejs')
-});
-
-app.get('/sa-tambah-karyawan.ejs',( req, res)=> {
-    res.render('sa-tambah-karyawan.ejs')
 });
 
 app.get('/sa-tambah-cabang.ejs',( req, res)=> {
@@ -91,12 +84,31 @@ app.get('/sa-tambah-cabang.ejs',( req, res)=> {
     })
 });
 
+
+// TAMPILKAN DATA KARYAWAN
+app.get('/sa-form-karyawan.ejs',( req, res)=> {
+    res.render('sa-form-karyawan.ejs')
+});
+
+
+app.get('/sa-tambah-karyawan.ejs',( req, res)=> {
+    pool.query('select * from table_karyawan', (error, result)=>{
+        if (error) throw error        
+    res.render('sa-tambah-karyawan.ejs', {items:result});
+    })
+});
+
+// TAMPILKAN DATA AKUN USER DAN ADMIN
 app.get('/sa-manajemen-akun.ejs',( req, res)=> {
     res.render('sa-manajemen-akun.ejs')
 });
 
+// USER
 app.get('/sa-m-akun-user.ejs',( req, res)=> {
-    res.render('sa-m-akun-user.ejs')
+    pool.query('select * from table_user', (error, result)=>{
+        if (error) throw error        
+    res.render('sa-m-akun-user.ejs', {items:result});
+    })
 });
 
 app.get('/sa-form-user.ejs',( req, res)=> {
@@ -104,15 +116,26 @@ app.get('/sa-form-user.ejs',( req, res)=> {
 });
 
 
+// TAMPILKAN DATA ADMIN
 app.get('/sa-m-akun-admin.ejs',( req, res)=> {
-    res.render('sa-m-akun-admin.ejs')
+    pool.query('select * from table_admin', (error, result)=>{
+        if (error) throw error        
+    res.render('sa-m-akun-admin.ejs', {items:result});
+    })
 });
 
 app.get('/sa-form-admin.ejs',( req, res)=> {
     res.render('sa-form-admin.ejs')
 });
 
-
+// DELETE DATA ADMIN
+app.get('/delete-adm', function (req, res, next){
+    pool.query('DELETE FROM table_admin', req.query.admin_id, (error, result)=>{
+        if (error) throw error
+    
+        res.render('sa-m-akun-admin.ejs'), {items:result}
+    });
+});
 
 // ADMIN CABANG
 app.get('/index.ejs',( req, res)=> {
@@ -135,6 +158,8 @@ app.get('/admin-terima-user.ejs',( req, res)=> {
     res.render('admin-terima-user.ejs')
 });
 
+
+// KIRIM BARANG KE CABANG / TRANSIT
 app.post('/kirim-transit', (req, res)=>{
     const itemName1 = req.body.id_barang_input;
     const itemName2 = req.body.id_cabang_asal_input;
@@ -164,6 +189,8 @@ app.post('/kirim-transit', (req, res)=>{
     });
 });
 
+
+// KIRIM BARANG KE PENERIMA
 app.post('/kirim-penerima', (req, res)=>{
     const itemName1 = req.body.id_barang_input;
     const itemName2 = req.body.id_admin_input;
@@ -189,6 +216,8 @@ app.post('/kirim-penerima', (req, res)=>{
     });
 });
 
+
+// TERIMA BARANG DARI CABANG LAIN
 app.post('/terima-ekspedisi', (req, res)=>{
     const itemName1 = req.body.id_barang_input;
     const itemName2 = req.body.nama_cabang_input;
@@ -212,7 +241,7 @@ app.post('/terima-ekspedisi', (req, res)=>{
     });
 });
 
-
+// FORM TERIMA BARANG DARI USER
 app.post('/terima-user', (req, res)=>{
     const itemName1 = req.body.id_barang_input;
     const itemName2 = req.body.nama_barang_input;
@@ -240,20 +269,21 @@ app.post('/terima-user', (req, res)=>{
     });
 });
 
+// TAMBAH USER
 app.post('/add-user', (req, res)=>{
     const itemName1 = req.body.username;
     const itemName2 = req.body.password;
-    var post = {user_email:itemName1,
-                user_password:itemName2}
+    var post = {username:itemName1,
+                password:itemName2}
     pool.query(`INSERT INTO table_user SET ?` , post, (error, results)=>{
         if(error){
             throw error;
         }
-        res.redirect('/sa-form-user.ejs');
+        res.redirect('/sa-m-akun-user.ejs');
     });
 });
 
-
+// TAMBAH ADMIN
 app.post('/add-admin', (req, res)=>{
     const itemName1 = req.body.admin_input;
     const itemName2 = req.body.password_input;
@@ -263,11 +293,12 @@ app.post('/add-admin', (req, res)=>{
         if(error){
             throw error;
         }
-        res.redirect('/sa-form-admin.ejs');
+        res.redirect('/sa-m-akun-admin.ejs');
     });
 });
 
 
+// TAMBAH DATA CABANG
 app.post('/add-cabang', (req, res)=>{
     const itemName1 = req.body.id_cabang;
     const itemName2 = req.body.nama_cabang;
@@ -284,6 +315,7 @@ app.post('/add-cabang', (req, res)=>{
 });
 
 
+// TAMBAH DATA KARYAWAN
 app.post('/add-karyawan', (req, res)=>{
     const itemName1 = req.body.id_karyawan;
     const itemName2 = req.body.nama_karyawan;
@@ -295,7 +327,7 @@ app.post('/add-karyawan', (req, res)=>{
         if(error){
             throw error;
         }
-        res.redirect('/sa-form-karyawan.ejs');
+        res.redirect('/sa-tambah-karyawan.ejs');
     });
 });
 

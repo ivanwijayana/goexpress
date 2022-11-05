@@ -133,7 +133,7 @@
                 <!-- Orders -->
                 <div class="orders">
                     <div class="row">
-                        <div class="col-xl-7">
+                        <div class="col-xl-9">
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="box-title">Data Karyawan </h4>
@@ -143,10 +143,10 @@
                                         <table class="table ">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th>ID</th>
-                                                    <th>Name</th>
-                                                    <th>Cabang</th>
+                                                    <th class="serial">No.</th>
+                                                    <th>ID Karyawan</th>
+                                                    <th>Nama Karyawan</th>
+                                                    <th>Cabang Penempatan</th>
                                                     <th class="th-o">Option</th>
                                                     <style>
                                                         .th-o{
@@ -157,51 +157,21 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                               
+                                                <%items.forEach((item)=>{%>
                                                 <tr>
-                                                    <td class="serial">1.</td>
-                                                    <td> #5469 </td>
-                                                    <td>  <span class="name">Louis Stanley</span> </td>
-                                                    <td> <span class="product">Cibiru</span> </td>
+                                                    
+                                                    <td class="serial"><span class="id-column"><%= item.id_table_karyawan%></span></td>
+                                                    <td> <span class="name-column"><%= item.id_karyawan%></span></td>
+                                                    <td> <span class="name-column"><%= item.nama_karyawan%></span> </td>
+                                                    <td> <span class="name-column"><%= item.cabang_karyawan%></span> </td>
                                                     <td>
                                                         <span class="badge badge-complete">Edit</span>
                                                         <span class="badge badge-danger">Delete</span>
                                                         
                                                     </td>
+                                                   
                                                 </tr>
-                                                <tr>
-                                                    <td class="serial">1.</td>
-                                                    <td> #5469 </td>
-                                                    <td>  <span class="name">Louis Stanley</span> </td>
-                                                    <td> <span class="product">Cibiru</span> </td>
-                                                    <td>
-                                                        <span class="badge badge-complete">Edit</span>
-                                                        <span class="badge badge-danger">Delete</span>
-                                                        
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="serial">1.</td>
-                                                    <td> #5469 </td>
-                                                    <td>  <span class="name">Louis Stanley</span> </td>
-                                                    <td> <span class="product">Cibiru</span> </td>
-                                                    <td>
-                                                        <span class="badge badge-complete">Edit</span>
-                                                        <span class="badge badge-danger">Delete</span>
-                                                        
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="serial">1.</td>
-                                                    <td> #5469 </td>
-                                                    <td>  <span class="name">Louis Stanley</span> </td>
-                                                    <td> <span class="product">Cibiru</span> </td>
-                                                    <td>
-                                                        <span class="badge badge-complete">Edit</span>
-                                                        <span class="badge badge-danger">Delete</span>
-                                                        
-                                                    </td>
-                                                </tr>
+                                                <%})%>
                                                 
                                             </tbody>
                                         </table>

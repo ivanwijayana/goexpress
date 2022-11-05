@@ -132,7 +132,7 @@
                 <!-- Orders -->
                 <div class="orders">
                     <div class="row">
-                        <div class="col-xl-5">
+                        <div class="col-xl-7">
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="box-title">Akun User </h4>
@@ -144,7 +144,8 @@
                                                 <tr>
                                                     <th class="serial">No</th>
                                                     <th>Email/Username</th>
-                                                    <th class="th-o">Password</th>
+                                                    <th>Password</th>
+                                                    <th class="th-o">Option</th>
                                                     <style>
                                                         .th-o{
                                                             text-align: center;
@@ -153,12 +154,17 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <%items.forEach((item)=>{%>
                                                 <tr>
-                                                    <td class="serial">1.</td>
-                                                    <td>  <span class="username">user1@gmail.com</span> </td>
-                                                    <td> <span class="password">password</span></td>
+                                                    <td class="serial"><span class="id-column"><%= item.user_id%></span></td>
+                                                    <td> <span class="name-column"><%= item.username%></span></td>
+                                                    <td> <span class="name-column"><%= item.password%></span> </td>
+                                                    <td>
+                                                        <span class="badge badge-complete">Edit</span>
+                                                        <span class="badge badge-danger">Delete</span>    
+                                                    </td>
                                                 </tr>
-                                                
+                                                <%})%>
                                                 
                                             </tbody>
                                         </table>
