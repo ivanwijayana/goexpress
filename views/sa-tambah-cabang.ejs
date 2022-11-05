@@ -165,7 +165,7 @@
                                                     <td> <span class="name-column"><%= item.lokasi%></span> </td>
                                                     <td>
                                                         <span class="badge badge-complete">Edit</span>
-                                                        <span class="badge badge-danger">Delete</span>
+                                                        <a href="/delete-cabang?id= <%= item.id_table_cabang %>" onClick="return confirm('Apakah Anda Yakin Ingin Menghapusnya ?')"><span class="badge badge-danger">Delete</span></a>
                                                         
                                                     </td>
                                                    

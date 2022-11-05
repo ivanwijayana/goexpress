@@ -154,18 +154,19 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                
                                                 <%items.forEach((item)=>{%>
                                                 <tr>
                                                     <td class="serial"><span class="id-column"><%= item.admin_id%></span></td>
                                                     <td> <span class="name-column"><%= item.admin_email%></span></td>
                                                     <td> <span class="name-column"><%= item.password_password%></span> </td>
                                                     <td>
-                                                        <span class="badge badge-danger">Edit</span>    
-                                                        <a href="/delete-adm?id= <%= item.admin_id %>" onClick="return confirm('Apakah Anda Yakin Ingin Menghapusnya ?')"><span class="badge badge-complete">Delete</span></a>
+                                                        <span class="badge badge-complete">Edit</span>
+                                                        <a href="/delete-adm?id= <%= item.admin_id %>" onClick="return confirm('Apakah Anda Yakin Ingin Menghapusnya ?')"><span class="badge badge-danger">Delete</span></a>
                                                     </td>
                                                 </tr>
                                                 <%})%>
-                                                
+                                            
                                             </tbody>
                                         </table>
                                     </div> <!-- /.table-stats -->
