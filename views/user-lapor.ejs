@@ -140,7 +140,7 @@
 
                             <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
 
-                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                            <a class="nav-link" href="index-utama.ejs"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
 
@@ -156,23 +156,21 @@
                 <div class="row">
                     <div class="col-lg-10">
                         <div class="card">
-                            <div class="card-header">
-                                <strong>Masukan Resi Disini</strong>
-                            </div>
-                            <div class="card-body card-block">
-                                <form action="#" method="post" class="form-horizontal">
+                            <form action="/lapor" method="post" class="form-horizontal"></form>
+                                <div class="card-header">
+                                    <strong>Masukan Resi Disini</strong>
+                                </div>
+                                <div class="card-body card-block">
                                     <div class="row form-group">
-                                        
-                                        <div class="col-12 col-md-9"><input type="email" id="hf-email" name="hf-email" placeholder="Enter Your Resi..." class="form-control"></div>
+                                        <div class="col-12 col-md-9"><input type="email" id="resi" name="resi" placeholder="Enter Your Resi..." class="form-control"></div>
                                     </div>
-                                    
-                                </form>
+
                                 <div class="row form-group">
                                     <div class="col col-md-6"><label for="file-input" class=" form-control-label">Upload Bukti Penerimaan</label></div><br>
-                                    <div class="col-12 col-md-9"><input type="file" id="file-input" name="file-input" class="form-control-file"></div>
+                                    <div class="col-12 col-md-9"><input type="file" id="image" name="image" class="form-control-file"></div>
                                 </div>
                                 <div class="bus">
-                                    <button type="button" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
                                 </div>
                                 <style>
                                     .bus {
@@ -180,9 +178,9 @@
                                         margin-bottom: 15px;
                                     }
                                 </style>
+                                
                             </div>
-                            
-                            
+                            </form>
                         </div>
                     </div>
                 </div>

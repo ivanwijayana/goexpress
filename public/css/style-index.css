@@ -17,6 +17,7 @@ body {
   
 }
 
+
 .nav{
   background-color: #ffffff;
   width: 100%;
@@ -126,6 +127,20 @@ h2 {
   color: #364f6b;
   width: 100%;
   line-height: 50px;
+}
+
+select{
+  background: #08a34f;
+  border-radius: 20px;
+  padding: 8px 8px 8px 8px;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.logo {
+  height: 5px;
+  width: 9px;
 }
 
 a.tbl-biru {
